@@ -1,2 +1,8 @@
-h1 Jobs#index
-p Find me in app/views/jobs/index.html.slim
+- @jobs.each do |job|
+	a href="#{job_path(job)}"
+		h2 = job.title
+	p = job.company
+
+br/
+
+= link_to "New job", new_job_path

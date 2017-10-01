@@ -1,0 +1,15 @@
+h1 = @job.title
+h4 
+	strong
+		= @job.company
+p = @job.description
+- if @job.url.empty?
+	= ""
+- else
+	p
+		a href="#{@job.url}" target="_blank"
+			= "APLIKUJ"
+
+= link_to "Home", root_path
+= " | "
+= link_to "Edit", edit_job_path(@job)
