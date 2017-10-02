@@ -8,4 +8,12 @@ html
     = csrf_meta_tags
   body
   	.container
+  		= link_to "All jobs", root_path
+  		= " - "
+	  	- Category.all.each_with_index do |category, index|
+	  		= link_to category.name, jobs_path(category: category.name)	
+	  		- if index+1 >= Category.all.length
+	  			= ""
+	  		- else
+		  		= " - "
 	    = yield

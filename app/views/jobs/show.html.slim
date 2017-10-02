@@ -2,6 +2,7 @@ h1 = @job.title
 h4 
 	strong
 		= @job.company
+p = @job.category.name
 p = @job.description
 - if @job.url.empty?
 	= ""
