@@ -2,17 +2,22 @@ h1 = @job.title
 h4 
 	strong
 		= @job.company
-p = @job.category.name
+- if @job.category_id.present?
+	p = @job.category.name
 p = @job.description
 - if @job.url.empty?
 	= ""
 - else
 	p
 		a href="#{@job.url}" target="_blank"
-			= "APLIKUJ"
+			button type="button" class="btn btn-success btn-sm"
+				b
+					= "Apply for job"
+br/
+br/
 
-= link_to "Back to all jobs", root_path
-= " | "
-= link_to "Edit", edit_job_path(@job)
-= " | "
-= link_to "Delete", job_path(@job), method: :delete, data: {confirm: "Are you sure?"}
+= link_to "Back", root_path, class: "btn btn-sm btn-default"
+= " "
+= link_to "Edit", edit_job_path(@job), class: "btn btn-sm btn-default"
+= " "
+= link_to "Delete", job_path(@job), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-sm btn-default"

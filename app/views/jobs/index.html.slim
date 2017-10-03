@@ -1,7 +1,9 @@
-- @jobs.each do |job|
-	h2 = link_to job.title, job
-	p = job.company
+list-group
+	- @jobs.each do |job|
+		a.list-group-item.list-group-item-action href="#{job_path(job)}" <span style="font-size: 1.6em;"><b>#{job.title}</b></span> @ #{job.company}
+			<span class="pull-right">#{job.created_at.strftime("%d.%m")}</span>
+		/ p = job.company
 
 br/
 
-= link_to "New job", new_job_path
+= link_to "New job", new_job_path, class: "btn btn-primary"
