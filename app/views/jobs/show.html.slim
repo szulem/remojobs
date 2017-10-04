@@ -5,6 +5,8 @@ h4
 - if @job.category_id.present?
 	p = @job.category.name
 p = @job.description
+/ - if @job.user.email.present?
+/ 	p = @job.user.email
 - if @job.url.empty?
 	= ""
 - else

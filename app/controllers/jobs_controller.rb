@@ -1,5 +1,6 @@
 class JobsController < ApplicationController
 	before_action :find_job, only: [:show, :edit, :update, :destroy]
+	before_filter :authenticate_user!, only: [:new, :edit, :update, :destroy]
 	def index
 		if params[:category].blank?
 			@jobs = Job.all.order("updated_at DESC")
@@ -13,14 +14,16 @@ class JobsController < ApplicationController
 	end
 
 	def new
-		@job = Job.new
+		# @job = Job.new
+		@job = current_user.jobs.build
 	end
 
 	def create
-		@job = Job.new(jobs_params)
+		# @job = Job.new(jobs_params)
+		@job = current_user.jobs.build(jobs_params)
 
 		if @job.save
-			redirect_to @job
+			redirect_to @job, notice: "Successfully added new Job"
 		else
 			render 'New'
 		end
@@ -45,7 +48,7 @@ class JobsController < ApplicationController
 	private
 
 	def jobs_params
-		params.require(:job).permit(:title, :description, :company, :url, :category_id)
+		params.require(:job).permit(:title, :description, :company, :url, :category_id, :user_id)
 	end
 
 	def find_job
