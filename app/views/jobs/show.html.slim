@@ -2,11 +2,17 @@ h1 = @job.title
 h4 
 	strong
 		= @job.company
+
 - if @job.category_id.present?
 	p = @job.category.name
+
 p = @job.description
-/ - if @job.user.email.present?
-/ 	p = @job.user.email
+
+- if @job.user.email.present?
+	p = @job.user.email
+
+br/
+
 - if @job.url.empty?
 	= ""
 - else
@@ -15,11 +21,13 @@ p = @job.description
 			button type="button" class="btn btn-success btn-sm"
 				b
 					= "Apply for job"
+
 br/
 br/
 
 = link_to "Back", root_path, class: "btn btn-sm btn-default"
 = " "
-= link_to "Edit", edit_job_path(@job), class: "btn btn-sm btn-default"
-= " "
-= link_to "Delete", job_path(@job), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-sm btn-default"
+- if @job.user == current_user
+	= link_to "Edit", edit_job_path(@job), class: "btn btn-sm btn-default"
+	= " "
+	= link_to "Delete", job_path(@job), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-sm btn-default"

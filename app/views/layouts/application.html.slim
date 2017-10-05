@@ -19,6 +19,13 @@ html
 			  		/ - else
 				  	/ 	li = " - "
   				li = link_to "+ Add job", new_job_path, style: "font-weight: bold;"
+  				- if user_signed_in?
+	  				li = link_to "Log out", destroy_user_session_path, method: :delete
+	  			- else
+	  				li
+	  				li = link_to "Log in", new_user_session_path
+	  				li = link_to "Sign up", new_user_registration_path
+  					
 .container
 	- flash.each do |name, msg|
 		= content_tag :div, msg, class: "alert alert-info"

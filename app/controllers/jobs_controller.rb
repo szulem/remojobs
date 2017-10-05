@@ -1,6 +1,7 @@
 class JobsController < ApplicationController
 	before_action :find_job, only: [:show, :edit, :update, :destroy]
-	before_filter :authenticate_user!, only: [:new, :edit, :update, :destroy]
+	# before_filter :authenticate_user!, only: [:new, :edit, :update, :destroy]
+	before_action :authenticate_user!, except: [:index, :show]
 	def index
 		if params[:category].blank?
 			@jobs = Job.all.order("updated_at DESC")
@@ -33,8 +34,11 @@ class JobsController < ApplicationController
 	end
 
 	def update
+		# we set user_id of job to id of current_user
+		@job.user_id = current_user.id
+
 		if @job.update(jobs_params)
-			redirect_to @job
+			redirect_to @job, notice: "Successfully updated Job"
 		else
 			render "Edit"
 		end
