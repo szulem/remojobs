@@ -1,7 +1,8 @@
+= image_tag(@job.user.logo.url(:medium), class: "float-right", title: "#{@job.user.company}")
 h1 = @job.title
-h4 
+h4
 	strong
-		= @job.company
+		= @job.user.company
 
 - if @job.category_id.present?
 	p = @job.category.name
@@ -22,8 +23,8 @@ br/
 				b
 					= "Apply for job"
 
-br/
-br/
+	br/
+	br/
 
 = link_to "Back", root_path, class: "btn btn-sm btn-default"
 = " "

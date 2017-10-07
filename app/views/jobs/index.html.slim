@@ -1,7 +1,11 @@
 .list-group
 	- @jobs.each do |job|
-		a.list-group-item.list-group-item-action href="#{job_path(job)}" <span style="font-size: 1.3em;"><b>#{job.title}</b></span> @ #{job.company}
-			<span class="pull-right">#{job.created_at.strftime("%d.%m")} <small>(#{job.updated_at.strftime("%d.%m")})</small></span>
+		a.list-group-item.list-group-item-action href="#{job_path(job)}" 
+			- if job.user.logo.url.present?
+				<img src="#{job.user.logo.url(:small)}" /> 
+				= " " 
+				<span style="font-size: 1.3em;"><b>#{job.title}</b></span> @ #{job.user.company}
+				<span class="pull-right">#{job.created_at.strftime("%d.%m")} <small>(#{job.updated_at.strftime("%d.%m")})</small></span>
 		/ p = job.company
 
 br/
