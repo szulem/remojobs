@@ -14,6 +14,7 @@ gem 'simple_form', '~> 3.5'
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 gem 'devise'
 gem 'paperclip', '~> 5.1'
+gem 'rails-timeago', '~> 2.16'
 
 group :development, :test do
   gem 'byebug'

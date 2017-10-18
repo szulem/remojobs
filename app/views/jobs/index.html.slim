@@ -1,11 +1,13 @@
 .list-group
 	- @jobs.each do |job|
 		a.list-group-item.list-group-item-action href="#{job_path(job)}" 
-			- if job.user.logo.url.present?
-				<img src="#{job.user.logo.url(:small)}" /> 
-				= " " 
-				<span style="font-size: 1.3em;"><b>#{job.title}</b></span> @ #{job.user.company}
-				<span class="pull-right">#{job.created_at.strftime("%d.%m")} <small>(#{job.updated_at.strftime("%d.%m")})</small></span>
+			<span style="font-size: 0.9em; margin-right: 6px;" title="#{job.created_at.strftime('%-d %b')}">#{time_ago_in_words job.created_at}</span>
+			= " "
+			<span style="font-size: 1.3em;"><b>#{job.title}</b></span> @ #{job.user.company}
+			= " "
+			- if job.created_at >= 14.day.ago
+				= image_tag("new_icon.png", alt: "new")
+			<span class="pull-right"><img src="#{job.user.logo.url(:small)}" /> </span>
 		/ p = job.company
 
 br/
