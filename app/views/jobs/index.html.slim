@@ -1,3 +1,14 @@
+- if @category.present?
+	= @category.name
+
+
+span.pull-right
+  span.badge.badge-secondary = @jobs.count
+  = " jobs"
+
+br/
+br/
+
 .list-group
 	- @jobs.each do |job|
 		a.list-group-item.list-group-item-action href="#{job_path(job)}" 
@@ -7,6 +18,8 @@
 			= " "
 			- if job.created_at >= 14.day.ago
 				= image_tag("new_icon.png", alt: "new")
+			- if (job.salary_from && job.salary_to && job.currency).present?
+				<span style="font-size: 1.3em; margin-left: 20px;"><b>#{job.salary_from} - #{job.salary_to} #{job.currency}</b></span>
 			<span class="pull-right"><img src="#{job.user.logo.url(:small)}" /> </span>
 		/ p = job.company
 

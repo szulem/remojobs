@@ -9,6 +9,8 @@ class JobsController < ApplicationController
 			@category_id = Category.find_by(name: params[:category]).id
 			@jobs = Job.where(category_id: @category_id).order("updated_at DESC")
 		end
+
+		@category = Category.find_by(name: params[:category])
 	end
 
 	def show
@@ -53,7 +55,7 @@ class JobsController < ApplicationController
 	private
 
 	def jobs_params
-		params.require(:job).permit(:title, :description, :url, :category_id, :user_id)
+		params.require(:job).permit(:title, :description, :url, :category_id, :user_id, :salary_from, :salary_to, :currency)
 	end
 
 	def find_job

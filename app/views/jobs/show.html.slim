@@ -1,8 +1,16 @@
 = image_tag(@job.user.logo.url(:medium), class: "float-right", title: "#{@job.user.company}")
 h1 = @job.title
-h4
-	strong
-		= @job.user.company
+
+- if (@job.salary_from && @job.salary_to && @job.currency).present?
+	h3 = "#{@job.salary_from} - #{@job.salary_to} #{@job.currency} net/month"
+
+- if @job.created_at >= 14.day.ago
+	span.pull-right
+		= image_tag("new_icon.png", alt: "new")
+
+/ h4
+/ 	strong
+/ 		= @job.user.company
 
 - if @job.category_id.present?
 	p = @job.category.name
