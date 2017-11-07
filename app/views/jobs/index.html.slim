@@ -12,17 +12,17 @@ br/
 .list-group
 	- @jobs.each do |job|
 		a.list-group-item.list-group-item-action href="#{job_path(job)}" 
-			<span style="font-size: 0.9em; margin-right: 6px;" title="#{job.created_at.strftime('%-d %b')}">#{time_ago_in_words job.created_at}</span>
+			<span style="font-size: 0.9em; margin-right: 6px;" title="#{job.created_at.strftime('%-d %b')}">#{job.created_at.strftime('%b %-d')}</span>
 			= " "
 			<span style="font-size: 1.3em;"><b>#{job.title}</b></span> @ #{job.user.company}
 			= " "
-			- if job.created_at >= 14.day.ago
+			- if job.created_at >= 21.day.ago
 				= image_tag("new_icon.png", alt: "new")
 			- if (job.salary_from && job.salary_to && job.currency).present?
-				<span style="font-size: 1.3em; margin-left: 20px;"><b>#{job.salary_from} - #{job.salary_to} #{job.currency}</b></span>
+				<span style="font-size: 1.3em; margin-left: 15px; color: #336699;">#{job.salary_from} - #{job.salary_to} #{job.currency}</span>
 			<span class="pull-right"><img src="#{job.user.logo.url(:small)}" /> </span>
 		/ p = job.company
 
 br/
 
-= link_to "New job", new_job_path, class: "btn btn-primary"
+= link_to "Post a job", new_job_path, class: "btn btn-primary"

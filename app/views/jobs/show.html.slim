@@ -1,8 +1,11 @@
+br/
 = image_tag(@job.user.logo.url(:medium), class: "float-right", title: "#{@job.user.company}")
 h1 = @job.title
 
 - if (@job.salary_from && @job.salary_to && @job.currency).present?
 	h3 = "#{@job.salary_from} - #{@job.salary_to} #{@job.currency} net/month"
+
+br/
 
 - if @job.created_at >= 14.day.ago
 	span.pull-right
@@ -12,8 +15,8 @@ h1 = @job.title
 / 	strong
 / 		= @job.user.company
 
-- if @job.category_id.present?
-	p = @job.category.name
+/ - if @job.category_id.present?
+/ 	p = @job.category.name
 
 p = @job.description
 
@@ -29,7 +32,7 @@ br/
 		a href="#{@job.url}" target="_blank"
 			button type="button" class="btn btn-success btn-sm"
 				b
-					= "Apply for job"
+					= "Apply for this job"
 
 	br/
 	br/

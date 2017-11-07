@@ -31,7 +31,7 @@ en:
         one: "1m"
         other: "%{count}m"
       about_x_minutes:
-        one: "~1m"
+        one: "1m"
         other: "%{count}m" 
       less_than_x_hours:
         one: "<1h"
@@ -40,8 +40,14 @@ en:
         one: "1h"
         other: "%{count}h"
       about_x_hours:
-        one: "~1h"
-        other: "%{count}h" 
+        one: "1h"
+        other: "%{count}h"
       x_days:
         one: "1d"
         other: "%{count}d"
+      x_months:
+        one: "1 month"
+        other: "%{count} months"
+      about_x_months:
+        one: "1 month"
+        other: "%{count} months"

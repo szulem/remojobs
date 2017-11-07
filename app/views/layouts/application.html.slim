@@ -11,7 +11,8 @@ html
 		header.header
 			nav.navbar.navbar-default
 				.container
-					.navbar-brand = link_to "remojobs.com", root_path
+					.navbar-brand = link_to root_path
+						= image_tag("remojobs_30.png", alt: "Remote IT jobs", title: "Homepage")
 					ul.nav.navbar-nav.navbar-right
 						/ li = link_to "All jobs", root_path
 						- Category.all.each_with_index do |category, index|
@@ -20,7 +21,7 @@ html
 							/ 	li = ""
 							/ - else
 							/ 	li = " - "
-						li = link_to "+ Add job", new_job_path, style: "font-weight: bold;"
+						li = link_to "+ Post a job", new_job_path, style: "font-weight: bold; color: #cc0000;"
 						- if user_signed_in?
 							li = link_to "Your account", edit_user_registration_path
 							li = link_to "Log out", destroy_user_session_path, method: :delete
