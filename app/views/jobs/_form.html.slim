@@ -1,19 +1,19 @@
 = simple_form_for(@job, html: {class: 'form-row align-items-center'}) do |f|
-	= f.collection_select :category_id, Category.all, :id, :name, {prompt: "Choose a category"}, class: 'form-control'
-	br/
-	= f.input :title, label: "Job title", placeholder: "Junior Ruby on Rails Developer"
-	= f.input :description, label: "Job description"
-	.form-row
-		.col-md-4
-			= f.input :salary_from, label: "Salary from", placeholder: "2500"
-		.col-md-4
-			= f.input :salary_to, label: "Salary to", placeholder: "8500"
-		.col-md-4
-			= f.label "Currency"
-			= f.select :currency, options_for_select(["", "PLN", "EUR", "USD", "GBP"], selected: @job.currency), {}, class: "form-control"
+  = f.collection_select :category_id, Category.all, :id, :name, {prompt: "Choose a category"}, class: 'form-control'
+  br/
+  = f.input :title, label: "Job title", placeholder: "Junior Ruby on Rails Developer"
+  = f.input :description, label: "Job description"
+  .form-row
+    .col-md-4
+      = f.input :salary_from, label: "Salary from", placeholder: "2500"
+    .col-md-4
+      = f.input :salary_to, label: "Salary to", placeholder: "8500"
+    .col-md-4
+      / = f.label "Currency"
+      = f.input :currency, as: :select, collection: ["PLN", "EUR", "USD", "GBP"], selected: @job.currency
 
-	= f.input :url, label: "Link to Job"
+  = f.input :url, label: "Link to Job"
 
-	br/
+  br/
 
-	= f.button :submit, class: "btn btn-primary"
+  = f.button :submit, class: "btn btn-primary"
