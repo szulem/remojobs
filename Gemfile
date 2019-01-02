@@ -24,6 +24,7 @@ group :development, :test do
   gem 'better_errors', '~> 2.3'
   gem 'html2slim', '~> 0.2.0'
   gem 'web-console', '~> 2.0'
+  gem 'rubocop', '~> 0.62.0'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

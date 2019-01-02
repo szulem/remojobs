@@ -1,5 +1,5 @@
 - if @category.present?
-	= @category.name
+  = @category.name
 
 
 span.pull-right
@@ -10,18 +10,18 @@ br/
 br/
 
 .list-group
-	- @jobs.each do |job|
-		a.list-group-item.list-group-item-action href="#{job_path(job)}" 
-			<span class="dateJobHomepage" title="#{job.created_at.strftime('%-d %b')}">#{job.created_at.strftime('%b %-d')}</span>
-			= " "
-			<span class="titleJobHomepage">#{job.title}</span> @ #{job.user.company}
-			= " "
-			- if job.created_at >= 21.day.ago
-				= image_tag("new_icon.png", alt: "new")
-			- if (job.salary_from && job.salary_to && job.currency).present?
-				<span class="salaryJobHomepage">#{job.salary_from} - #{job.salary_to} #{job.currency}</span>
-			<span class="pull-right"><img src="#{job.user.logo.url(:small)}" /> </span>
-		/ p = job.company
+  - @jobs.each do |job|
+    a.list-group-item.list-group-item-action href="#{job_path(job)}" 
+      <span class="dateJobHomepage" title="#{job.created_at.strftime('%-d %b')}">#{job.created_at.strftime('%b %-d')}</span>
+      = " "
+      <span class="titleJobHomepage">#{job.title}</span> @ #{job.user.company}
+      = " "
+      - if job.created_at >= 21.day.ago
+        = image_tag("new_icon.png", alt: "new")
+      - if (job.salary_from && job.salary_to && job.currency).present?
+        <span class="salaryJobHomepage">#{job.salary_from} - #{job.salary_to} #{job.currency}</span>
+      <span class="pull-right"><img src="#{job.user.logo.url(:small)}" /> </span>
+    / p = job.company
 
 br/
 

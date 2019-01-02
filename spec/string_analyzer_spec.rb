@@ -9,7 +9,7 @@ describe StringAnalyzer do
 			expect(sa.has_vowels? test_string).to be true
 		end
 
-		it "sholud detect when a string doesn't contain vowels" do
+		it "should detect when a string doesn't contain vowels" do
 			sa = StringAnalyzer.new
 			test_string = 'bcdfg'
 			expect(sa.has_vowels? test_string).to be false

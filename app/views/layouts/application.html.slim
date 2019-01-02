@@ -1,44 +1,42 @@
 doctype html
 html
-	head
-		meta content=("text/html; charset=UTF-8") http-equiv="Content-Type"
-		title Remojobs
-		meta name="viewport" content=("width=device-width, initial-scale=1.0")
-		= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
-		= javascript_include_tag 'application', 'data-turbolinks-track' => true
-		= csrf_meta_tags
-	body
-		header.header
-			nav.navbar.navbar-default
-				.container
-					.navbar-brand = link_to root_path
-						= image_tag("remojobs_30.png", alt: "Remote IT jobs", title: "Homepage")
-					ul.nav.navbar-nav.navbar-right
-						/ li = link_to "All jobs", root_path
-						- Category.all.each_with_index do |category, index|
-							li = link_to category.name, jobs_path(category: category.name)	
-							/ - if index+1 >= Category.all.length
-							/ 	li = ""
-							/ - else
-							/ 	li = " - "
-						li = link_to "+ Post a job", new_job_path, style: "font-weight: bold; color: #cc0000;"
-						- if user_signed_in?
-							li = link_to "Your account", edit_user_registration_path
-							li = link_to "Log out", destroy_user_session_path, method: :delete
-						- else
-							li
-							li = link_to "Log in", new_user_session_path
-							li = link_to "Sign up", new_user_registration_path
+  head
+    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type"
+    title Remojobs
+    meta name="viewport" content=("width=device-width, initial-scale=1.0")
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  body
+    header.header
+      nav.navbar.navbar-default
+        .container
+          .navbar-brand = link_to root_path
+            = image_tag("remojobs_30.png", alt: "Remote IT jobs", title: "Homepage")
+          ul.nav.navbar-nav.navbar-right
+            / li = link_to "All jobs", root_path
+            - Category.all.each_with_index do |category, index|
+              li = link_to category.name, jobs_path(category: category.name)  
+              / - if index+1 >= Category.all.length
+              /   li = ""
+              / - else
+              /   li = " - "
+            li = link_to "+ Post a job", new_job_path
+            - if user_signed_in?
+              li = link_to "Your account", edit_user_registration_path
+              li = link_to "Log out", destroy_user_session_path, method: :delete
+            - else
+              li
+              li = link_to "Log in", new_user_session_path
+              li = link_to "Sign up", new_user_registration_path
 
-		main.container
-			- flash.each do |name, msg|
-				= content_tag :div, msg, class: "alert alert-info"
-			= yield
+    main.container
+      - flash.each do |name, msg|
+        = content_tag :div, msg, class: "alert alert-info"
+      = yield
+      br/
+      br/
 
-			br/
-			br/
-			br/
-
-		.panel-footer.panel-custom
-			.container
-				span.text-muted = "&copy; 2017 | remojobs.com".html_safe
+    .panel-footer.panel-custom
+      .container
+        span.text-muted = "&copy; 2017 | remojobs.com".html_safe
