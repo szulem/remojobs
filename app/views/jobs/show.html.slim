@@ -43,3 +43,13 @@ br/
   = link_to "Edit", edit_job_path(@job), class: "btn btn-sm btn-default"
   = " "
   = link_to "Delete", job_path(@job), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-sm btn-default"
+
+br/
+br/
+br/
+
+h3 Other job offers at #{@job.user.company}:
+ul
+  - @job.user.jobs.each do |f|
+    li
+      = f.title
