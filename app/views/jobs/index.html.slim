@@ -14,7 +14,9 @@ br/
     a.list-group-item.list-group-item-action href="#{job_path(job)}" 
       <span class="dateJobHomepage" title="#{job.created_at.strftime('%-d %b')}">#{job.created_at.strftime('%b %-d')}</span>
       = " "
-      <span class="titleJobHomepage">#{job.title}</span> @ #{job.user.company}
+      span.titleJobHomepage 
+        = job.title
+      = " @ " + job.user.company
       = " "
       - if job.created_at >= 21.day.ago
         = image_tag("new_icon.png", alt: "new")
